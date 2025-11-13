@@ -1,62 +1,265 @@
-<!DOCTYPE html>
+<!-- Khaleel_Portfolio_SingleFile.html -->
+<!-- Single-file HTML + CSS portfolio inspired by https://thulasi120.github.io/Data-Analyst-Portfolio/ -->
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Khaleel Shaik | Portfolio</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Khaleel Shaik — Data Analyst</title>
+  <meta name="description" content="Portfolio — Khaleel Shaik | Data Analyst">
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; background: #f9f9f9; }
-    header { background: #1e3a8a; color: white; padding: 20px; text-align: center; }
-    section { padding: 40px; }
-    h2 { color: #1e3a8a; }
-    .project { background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-    footer { background: #1e3a8a; color: white; text-align: center; padding: 10px; }
-    a { color: #1e3a8a; text-decoration: none; }
+    :root{
+      --bg:#0f1724; /* dark navy */
+      --card:#0b1220;
+      --muted:#94a3b8;
+      --accent:#06b6d4;
+      --glass: rgba(255,255,255,0.04);
+      --radius:14px;
+      --maxw:1000px;
+      --ff: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: linear-gradient(180deg,var(--bg) 0%, #071023 100%);
+      color:#e6eef8;
+      font-family:var(--ff);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:36px 20px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .container{
+      width:100%;
+      max-width:var(--maxw);
+    }
+
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:28px;
+    }
+    .brand{display:flex;gap:14px;align-items:center}
+    .logo{
+      width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:700;color:#02101a;font-size:18px;box-shadow:0 6px 18px rgba(2,6,23,0.6)
+    }
+    .brand h1{margin:0;font-size:18px}
+    .brand p{margin:0;font-size:13px;color:var(--muted)}
+
+    nav a{color:var(--muted);text-decoration:none;margin-left:14px;font-size:14px}
+    nav a:hover{color:var(--accent)}
+
+    .hero{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border-radius:var(--radius);
+      padding:28px;
+      display:grid;
+      grid-template-columns:1fr 260px;
+      gap:20px;
+      align-items:center;
+      box-shadow:0 8px 30px rgba(2,6,23,0.6);
+      margin-bottom:22px;
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    .intro h2{margin:0;font-size:28px}
+    .intro p{color:var(--muted);line-height:1.5;margin-top:8px}
+    .cta{margin-top:14px;display:flex;gap:10px}
+    .btn{padding:10px 14px;border-radius:10px;font-weight:600;background:var(--accent);color:#02101a;text-decoration:none}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+
+    .avatar{
+      width:220px;height:220px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.03)
+    }
+    .avatar img{width:86%;border-radius:12px;display:block}
+    .small-meta{display:flex;gap:8px;margin-top:12px;color:var(--muted);font-size:13px}
+
+    .grid{display:grid;grid-template-columns:2fr 1fr;gap:18px}
+    .card{background:var(--card);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+
+    .section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+    .section-title h3{margin:0;font-size:18px}
+    .section-title a{color:var(--muted);font-size:13px;text-decoration:none}
+
+    /* Projects */
+    .projects{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .project{padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);border:1px solid rgba(255,255,255,0.02)}
+    .project h4{margin:0 0 6px 0}
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+    .tag{font-size:12px;padding:6px 8px;border-radius:999px;background:rgba(255,255,255,0.02);color:var(--muted)}
+    .links{margin-top:10px}
+    .links a{font-size:13px;color:var(--muted);text-decoration:none;margin-right:12px}
+
+    /* Right column */
+    .skills-list{display:flex;flex-direction:column;gap:8px}
+    .skill{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:10px;background:var(--glass);border:1px solid rgba(255,255,255,0.02)}
+    .skill .name{font-size:14px}
+    .skill .level{font-size:13px;color:var(--muted)}
+
+    /* Experience */
+    .exp-item{margin-bottom:10px}
+    .exp-item h4{margin:0;font-size:15px}
+    .exp-item p{margin:4px 0 0 0;color:var(--muted);font-size:13px}
+
+    footer{margin-top:24px;color:var(--muted);font-size:13px;text-align:center}
+
+    /* Responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;}
+      .grid{grid-template-columns:1fr}
+      .projects{grid-template-columns:1fr}
+      nav{display:none}
+    }
+
   </style>
 </head>
 <body>
-  <header>
-    <h1>Khaleel Shaik</h1>
-    <p>Data Analyst | Data Scientist | Java Developer</p>
-  </header>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">KS</div>
+        <div>
+          <h1>Khaleel Shaik</h1>
+          <p>Data Analyst • B.Tech CSE (Data Science)</p>
+        </div>
+      </div>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <p>I’m a Data Science graduate with hands-on experience in Machine Learning, Python, SQL, and Web Deployment using Streamlit and Azure. Passionate about transforming data into insights and building real-world applications.</p>
-  </section>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
 
-  <section id="skills">
-    <h2>Skills</h2>
-    <ul>
-      <li>Programming: Python, Java, C</li>
-      <li>Data: SQL, Excel, Power BI</li>
-      <li>Tools: Streamlit, Azure Data Factory</li>
-      <li>Web: HTML, CSS</li>
-    </ul>
-  </section>
+    <main>
+      <section class="hero">
+        <div class="intro">
+          <h2>Hi — I'm Khaleel.</h2>
+          <p>I turn data into actionable insights: dashboards, models and ETL pipelines. I work with Python, SQL, and Power BI to solve business problems and deliver clear visual stories.</p>
+          <div class="cta">
+            <a class="btn" href="#projects">See projects</a>
+            <a class="btn ghost" href="/Khaleel_Shaik_Resume.pdf">Download resume</a>
+          </div>
+          <div style="margin-top:16px;color:var(--muted);font-size:14px">Available for internships & entry-level roles</div>
+        </div>
 
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="project">
-      <h3>Customer Personality Analysis</h3>
-      <p>Built a machine learning model to segment customers and improve marketing strategies.</p>
-      <a href="https://github.com/yourusername/customer-personality-analysis">View on GitHub</a>
-    </div>
-    <div class="project">
-      <h3>Sentiment Analysis using Logistic Regression</h3>
-      <p>Developed a Streamlit app that classifies sentiments of reviews.</p>
-      <a href="https://github.com/yourusername/sentiment-analysis">View on GitHub</a>
-    </div>
-  </section>
+        <aside class="avatar">
+          <!-- Replace src with your image path or remove img to show initials -->
+          <img src="https://via.placeholder.com/300x300.png?text=Your+Photo" alt="Khaleel Shaik">
+          <div class="small-meta">
+            <span>Hyderabad, India</span>
+            <span>•</span>
+            <span>Open to work</span>
+          </div>
+        </aside>
+      </section>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: khaleelshaik@example.com</p>
-    <p><a href="https://www.linkedin.com/in/khaleelshaik/">LinkedIn</a> | <a href="https://github.com/khaleelshaik">GitHub</a></p>
-  </section>
+      <section class="grid">
+        <div>
+          <div class="card" id="projects">
+            <div class="section-title">
+              <h3>Selected projects</h3>
+              <a href="https://github.com/yourusername">View on GitHub →</a>
+            </div>
 
-  <footer>
-    <p>© 2025 Khaleel Shaik</p>
-  </footer>
+            <div class="projects">
+              <article class="project">
+                <h4>Customer Personality Analysis</h4>
+                <div class="muted">Sentiment analysis, clustering and deployment as a Streamlit app.</div>
+                <div class="tags">
+                  <span class="tag">Python</span>
+                  <span class="tag">Logistic Reg.</span>
+                  <span class="tag">Streamlit</span>
+                </div>
+                <div class="links">
+                  <a href="#">Repository</a>
+                  <a href="#">Live</a>
+                </div>
+              </article>
+
+              <article class="project">
+                <h4>Sales Analytics Dashboard</h4>
+                <div class="muted">Interactive Power BI dashboard with ETL automation using Python.</div>
+                <div class="tags">
+                  <span class="tag">Power BI</span>
+                  <span class="tag">SQL</span>
+                </div>
+                <div class="links">
+                  <a href="#">Repository</a>
+                  <a href="#">Live</a>
+                </div>
+              </article>
+
+              <article class="project">
+                <h4>Food Demand Prediction</h4>
+                <div class="muted">Regression modelling and feature engineering to forecast demand.</div>
+                <div class="tags">
+                  <span class="tag">SPSS</span>
+                  <span class="tag">Regression</span>
+                </div>
+                <div class="links">
+                  <a href="#">Repository</a>
+                </div>
+              </article>
+
+              <article class="project">
+                <h4>Voice–Mood Detection</h4>
+                <div class="muted">Published project on detecting mood from voice signals.</div>
+                <div class="tags">
+                  <span class="tag">ML</span>
+                  <span class="tag">Signal Proc.</span>
+                </div>
+                <div class="links">
+                  <a href="#">Repository</a>
+                </div>
+              </article>
+
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:14px;" id="about">
+            <div class="section-title"><h3>About</h3></div>
+            <p style="color:var(--muted);line-height:1.6">I completed a B.Tech in CSE (Data Science) and have internship experience in data science and cyber security. I enjoy building dashboards, automating reports, and solving business problems using data-driven approaches.</p>
+          </div>
+
+        </div>
+
+        <aside>
+          <div class="card" id="skills">
+            <div class="section-title"><h3>Skills</h3></div>
+            <div class="skills-list">
+              <div class="skill"><div class="name">Python (Pandas, NumPy)</div><div class="level">Advanced</div></div>
+              <div class="skill"><div class="name">SQL / PostgreSQL</div><div class="level">Advanced</div></div>
+              <div class="skill"><div class="name">Power BI / Tableau</div><div class="level">Intermediate</div></div>
+              <div class="skill"><div class="name">Excel (PivotTables)</div><div class="level">Advanced</div></div>
+              <div class="skill"><div class="name">HTML, CSS, Java</div><div class="level">Intermediate</div></div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:14px;" id="experience">
+            <div class="section-title"><h3>Experience</h3></div>
+            <div class="exp-item">
+              <h4>Trainee Salesforce Developer — Accellor</h4>
+              <p>Shortlisted, preparing for Apex & SOQL.</p>
+            </div>
+            <div class="exp-item">
+              <h4>Intern — Lyfaux Technologies</h4>
+              <p>Cyber security exposure and support tasks.</p>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:14px;" id="contact">
+            <div class="section-title"><h3>Contact</h3></div>
+            <p style="color:var(--muted);font-size:14px;line-height:1.5">Email: <a href="mailto:youremail@example.com" style="color:var(--accent);text-decoration:none">youremail@example.com</a><br>GitHub: <a href="https://github.com/yourusername" style="color:var(--accent);text-decoration:none">github.com/yourusername</a></p>
+          </div>
+        </aside>
+      </section>
+    </main>
+  </div>
 </body>
 </html>
