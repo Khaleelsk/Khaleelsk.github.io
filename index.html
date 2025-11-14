@@ -1,265 +1,460 @@
-<!-- Khaleel_Portfolio_SingleFile.html -->
-<!-- Single-file HTML + CSS portfolio inspired by https://thulasi120.github.io/Data-Analyst-Portfolio/ -->
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Khaleel Shaik — Data Analyst</title>
-  <meta name="description" content="Portfolio — Khaleel Shaik | Data Analyst">
-  <style>
-    :root{
-      --bg:#0f1724; /* dark navy */
-      --card:#0b1220;
-      --muted:#94a3b8;
-      --accent:#06b6d4;
-      --glass: rgba(255,255,255,0.04);
-      --radius:14px;
-      --maxw:1000px;
-      --ff: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      background: linear-gradient(180deg,var(--bg) 0%, #071023 100%);
-      color:#e6eef8;
-      font-family:var(--ff);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      padding:36px 20px;
-      display:flex;
-      justify-content:center;
-    }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khaleel Shaik | Data Analyst</title>
+   <style>
+    /* -------- General Styles -------- */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #141e30, #243b55);
+  color: #f1f1f1;
+  line-height: 1.6;
+}
+h1, h2, h3 {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: #00c6ff;
+}
 
-    .container{
-      width:100%;
-      max-width:var(--maxw);
-    }
+/* -------- Navbar -------- */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(6px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+nav .logo {
+  font-size: 1.8em;
+  font-weight: bold;
+  background: linear-gradient(90deg, #00c6ff, #00ff9d);
+  background-clip: text;
+  color: transparent;
 
-    header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom:28px;
-    }
-    .brand{display:flex;gap:14px;align-items:center}
-    .logo{
-      width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:700;color:#02101a;font-size:18px;box-shadow:0 6px 18px rgba(2,6,23,0.6)
-    }
-    .brand h1{margin:0;font-size:18px}
-    .brand p{margin:0;font-size:13px;color:var(--muted)}
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+nav ul li {
+  font-weight: 500;
+}
+nav ul li a {
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+nav ul li a:hover {
+  background: rgba(255,255,255,0.1);
+}
 
-    nav a{color:var(--muted);text-decoration:none;margin-left:14px;font-size:14px}
-    nav a:hover{color:var(--accent)}
+/* -------- Hero Section -------- */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+.hero h1 {
+  font-size: 3.5em;
+  font-weight: bold;
+  background: linear-gradient(90deg, #00c6ff, #00ff9d);
+  background-clip: text;
+  color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeInDown 1s ease-in-out;
+}
 
-    .hero{
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
-      border-radius:var(--radius);
-      padding:28px;
-      display:grid;
-      grid-template-columns:1fr 260px;
-      gap:20px;
-      align-items:center;
-      box-shadow:0 8px 30px rgba(2,6,23,0.6);
-      margin-bottom:22px;
-      border:1px solid rgba(255,255,255,0.03);
-    }
-    .intro h2{margin:0;font-size:28px}
-    .intro p{color:var(--muted);line-height:1.5;margin-top:8px}
-    .cta{margin-top:14px;display:flex;gap:10px}
-    .btn{padding:10px 14px;border-radius:10px;font-weight:600;background:var(--accent);color:#02101a;text-decoration:none}
-    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+.hero h2 {
+  font-size: 2em;
+  margin-top: 10px;
+  color: #ddd;
+}
+.hero p {
+  margin-top: 20px;
+  max-width: 700px;
+  font-size: 1.2em;
+  color: #bbb;
+}
+.buttons {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+}
+.btn {
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+.btn-primary {
+  background: linear-gradient(90deg, #00c6ff, #00ff9d);
+  color: #fff;
+}
+.btn-primary:hover {
+  transform: scale(1.05);
+}
+.btn-dark {
+  background: #111;
+  color: #fff;
+  border: 1px solid #444;
+}
+.btn-dark:hover {
+  background: #333;
+  transform: scale(1.05);
+}
 
-    .avatar{
-      width:220px;height:220px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.03)
-    }
-    .avatar img{width:86%;border-radius:12px;display:block}
-    .small-meta{display:flex;gap:8px;margin-top:12px;color:var(--muted);font-size:13px}
+/* -------- Section Cards (for About, Skills, Education, Experience) -------- */
+section {
+  padding: 80px 20px;
+  max-width: 1100px;
+  margin: auto;
+  color: #eee;
+}
 
-    .grid{display:grid;grid-template-columns:2fr 1fr;gap:18px}
-    .card{background:var(--card);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+.section-card {
+  background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+  border-radius: 15px;
+  padding: 30px;
+  margin-bottom: 40px;
+  box-shadow: 0px 6px 20px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.section-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0px 10px 30px rgba(0,0,0,0.6);
+}
 
-    .section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-    .section-title h3{margin:0;font-size:18px}
-    .section-title a{color:var(--muted);font-size:13px;text-decoration:none}
+/* -------- Section Headings -------- */
+h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2.6em;
+  font-weight: 700;
+  color: #00c6ff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+}
+h2::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 5px;
+  background: linear-gradient(90deg, #00c6ff, #00ff9d);
+  margin: 12px auto 0;
+  border-radius: 3px;
+}
 
-    /* Projects */
-    .projects{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .project{padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);border:1px solid rgba(255,255,255,0.02)}
-    .project h4{margin:0 0 6px 0}
-    .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-    .tag{font-size:12px;padding:6px 8px;border-radius:999px;background:rgba(255,255,255,0.02);color:var(--muted)}
-    .links{margin-top:10px}
-    .links a{font-size:13px;color:var(--muted);text-decoration:none;margin-right:12px}
+/* -------- Buttons for Sections -------- */
+.section-btn {
+  display: inline-block;
+  padding: 12px 25px;
+  margin-top: 20px;
+  border-radius: 40px;
+  font-weight: 600;
+  background: linear-gradient(90deg, #00c6ff, #00ff9d);
+  color: #fff;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 15px rgba(0,198,255,0.3);
+}
+.section-btn:hover {
+  background: linear-gradient(90deg, #00ff9d, #00c6ff);
+  transform: scale(1.08);
+  box-shadow: 0px 6px 20px rgba(0,198,255,0.5);
+}
 
-    /* Right column */
-    .skills-list{display:flex;flex-direction:column;gap:8px}
-    .skill{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:10px;background:var(--glass);border:1px solid rgba(255,255,255,0.02)}
-    .skill .name{font-size:14px}
-    .skill .level{font-size:13px;color:var(--muted)}
+/* -------- Project Cards Upgrade -------- */
+.project-card {
+  background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 20px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex: 1 1 300px;
+  min-width: 280px;
+}
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 10px 25px rgba(0,0,0,0.6);
+}
+.project-card h3 {
+  color: #00ff9d;
+  font-size: 1.4em;
+  margin-bottom: 12px;
+}
 
-    /* Experience */
-    .exp-item{margin-bottom:10px}
-    .exp-item h4{margin:0;font-size:15px}
-    .exp-item p{margin:4px 0 0 0;color:var(--muted);font-size:13px}
+/* -------- Contact Links Upgrade -------- */
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+.contact-links a {
+  display: inline-block;
+  padding: 12px 20px;
+  border-radius: 40px;
+  font-weight: bold;
+  background: rgba(0,0,0,0.3);
+  border: 1px solid #00c6ff;
+  color: #00c6ff;
+  transition: all 0.3s ease;
+}
+.contact-links a:hover {
+  background: linear-gradient(90deg, #00c6ff, #00ff9d);
+  color: #fff;
+  transform: scale(1.1);
+  box-shadow: 0px 6px 18px rgba(0,198,255,0.5);
+}
+.project-links {
+  display: flex;
+  gap: 10px; /* space between buttons */
+  margin-top: 10px;
+}
 
-    footer{margin-top:24px;color:var(--muted);font-size:13px;text-align:center}
+.section-btn {
+  padding: 8px 14px;
+  text-decoration: none;
+  background-color: #0073e6;
+  color: white;
+  border-radius: 5px;
+  font-size: 14px;
+}
 
-    /* Responsive */
-    @media (max-width:900px){
-      .hero{grid-template-columns:1fr;}
-      .grid{grid-template-columns:1fr}
-      .projects{grid-template-columns:1fr}
-      nav{display:none}
-    }
+.section-btn:hover {
+  background-color: #005bb5;
+}
 
-  </style>
+/* -------- LinkedIn QR Section -------- */
+.qr-section {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.qr-section p {
+  font-weight: 500;
+  color: #ddd; /* changed to match dark theme */
+}
+.qr-section img {
+  margin-top: 8px;
+  border-radius: 10px;
+  border: 2px solid #0077b5; /* LinkedIn blue */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 119, 181, 0.3);
+}
+
+.qr-section img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 119, 181, 0.5);
+}
+
+   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="brand">
-        <div class="logo">KS</div>
-        <div>
-          <h1>Khaleel Shaik</h1>
-          <p>Data Analyst • B.Tech CSE (Data Science)</p>
-        </div>
+
+
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">Khaleel Shaik</div>
+    <ul>
+      <li><a href="#home">HOME</a></li>
+      <li><a href="#contact">CONTACT</a></li>
+      <li><a href="#about">ABOUT ME</a></li>
+      <li><a href="#skills">SKILLS</a></li>
+      <li><a href="#education">EDUCATION</a></li>
+      <li><a href="#projects">PROJECTS</a></li>
+      <li><a href="#experience">EXPERIENCE</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <h1>Khaleel Shaik</h1>
+    <h2>Data Analyst</h2>
+    <p>Aspiring Data Analyst with hands-on experience in Python, SQL, Excel, and Power BI.
+Skilled at analyzing, visualizing, and interpreting complex datasets.
+Driven to convert data into actionable insights that support business growth.</p>
+    <div class="buttons">
+      <a href="#about" class="btn btn-primary">LEARN MORE ABOUT ME</a>
+      <a href="Khaleel_Shaik_DA.pdf" class="btn btn-dark" download="Khaleel_Shaik_DA.pdf">DOWNLOAD RESUME</a>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="section-card">
+      <div class="contact-links">
+        <a href="mailto:khaleelsk631@gmail.com">📧 Email</a>
+        <a href="https://github.com/Khaleelsk" target="_blank">💻 GitHub</a>
+    </div>
+    <div class="qr-section">
+      <p>📱 Scan to view my LinkedIn profile instantly:</p>
+      <img src="LinkedIn_QR.jpg" alt="LinkedIn QR Code" width="150">
       </div>
+    </div>
+  </section>
 
-      <nav>
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
+  <!-- About Section -->
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="section-card">
+      <p>I am a detail-oriented Data Analyst with strong skills in SQL, Python, Excel, Tableau and Power BI.
+        I have practical experience in data cleaning, exploratory analysis, visualization, and predictive modeling through internships and academic projects. 
+        I am passionate about turning complex datasets into meaningful insights that support data-driven decision-making.
+      </p>
+    </div>
+  </section>
 
-    <main>
-      <section class="hero">
-        <div class="intro">
-          <h2>Hi — I'm Khaleel.</h2>
-          <p>I turn data into actionable insights: dashboards, models and ETL pipelines. I work with Python, SQL, and Power BI to solve business problems and deliver clear visual stories.</p>
-          <div class="cta">
-            <a class="btn" href="#projects">See projects</a>
-            <a class="btn ghost" href="/Khaleel_Shaik_Resume.pdf">Download resume</a>
-          </div>
-          <div style="margin-top:16px;color:var(--muted);font-size:14px">Available for internships & entry-level roles</div>
-        </div>
+  <!-- Skills Section -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="section-card skills-block">
+      <p><b>Programming & Data Tools:</b> Python (Pandas, NumPy, Matplotlib), SQL, Excel (PivotTables, VLOOKUP, Charts)</p>
+      <p><b>Data Visualization Tools:</b> Power BI, Tableau</p>
+      <p><b>Database:</b> MySQL</p>
+      <p><b>Cloud :</b> Azure, SSMS, GCP</p>
+      <p><b>Version Control & Collaboration:</b> Git, GitHub</p>
+    </div>
+  </section>
 
-        <aside class="avatar">
-          <!-- Replace src with your image path or remove img to show initials -->
-          <img src="https://via.placeholder.com/300x300.png?text=Your+Photo" alt="Khaleel Shaik">
-          <div class="small-meta">
-            <span>Hyderabad, India</span>
-            <span>•</span>
-            <span>Open to work</span>
-          </div>
-        </aside>
-      </section>
+  <!-- Education Section -->
+  <section id="education">
+    <h2>Education</h2>
+    <div class="section-card edu-item">
+      <h3>Bachelor of Engineering in Information Technology</h3>
+      <p>KKR & KSR Institute of Technology and Sciences, Andhra Pradesh (2020 – 2024)</p>
+      <ul>
+        <li>Graduated among top 5% of batch</li>
+        <li>Relevant Coursework: Data Science, Database Management, Statistical Methods</li>
+      </ul>
+    </div>
+  </section>
 
-      <section class="grid">
-        <div>
-          <div class="card" id="projects">
-            <div class="section-title">
-              <h3>Selected projects</h3>
-              <a href="https://github.com/yourusername">View on GitHub →</a>
-            </div>
+  <!-- Projects Section -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects-container">
+<div class="project-card">
+  <h3>Customer Personality Analysis</h3>
+<ul class="project-points">
+  <li>📊 Conducted in-depth analysis of customer demographics and behavioral patterns to segment users into actionable personality groups, enabling more targeted and effective marketing strategies.</li>
+  <li>🐍 Performed end-to-end data preprocessing—handling missing values, encoding, normalization, and feature scaling—to ensure data quality and improve model performance.</li>
+  <li>🤖 Applied machine learning techniques including <b>K-Means clustering</b>, <b>Logistic Regression</b>, and <b>Random Forest</b> to uncover trends, predict customer behavior, and support business decision-making.</li>
+  <li>📈 Delivered insights that enhanced customer profiling accuracy and strengthened strategic planning for personalized marketing.</li>
+</ul>
 
-            <div class="projects">
-              <article class="project">
-                <h4>Customer Personality Analysis</h4>
-                <div class="muted">Sentiment analysis, clustering and deployment as a Streamlit app.</div>
-                <div class="tags">
-                  <span class="tag">Python</span>
-                  <span class="tag">Logistic Reg.</span>
-                  <span class="tag">Streamlit</span>
-                </div>
-                <div class="links">
-                  <a href="#">Repository</a>
-                  <a href="#">Live</a>
-                </div>
-              </article>
+<a href="https://customer-personality-analysis.streamlit.app/" class="section-btn" target="_blank">Link</a>
+<a href="https://github.com/Khaleelsk/Customer-Personality-Analysis" class="section-btn" target="_blank">Repository</a>
 
-              <article class="project">
-                <h4>Sales Analytics Dashboard</h4>
-                <div class="muted">Interactive Power BI dashboard with ETL automation using Python.</div>
-                <div class="tags">
-                  <span class="tag">Power BI</span>
-                  <span class="tag">SQL</span>
-                </div>
-                <div class="links">
-                  <a href="#">Repository</a>
-                  <a href="#">Live</a>
-                </div>
-              </article>
+</div>
+<div class="project-card">
+  <h3>Voice Mood Detection</h3>
+<ul class="project-points">
+  <li>🎤 Developed an AI/ML-based speech emotion recognition model, achieving <b>85% accuracy</b> across five mood categories.</li>
+  <li>⚙️ Designed a robust vocal emotion detection pipeline that improved facial-validity assessment consistency by <b>25%</b>.</li>
+  <li>📈 Built efficient data preprocessing and feature-extraction workflows (MFCC, spectral features), enhancing model training efficiency and reducing computation time.</li>
+</ul>
 
-              <article class="project">
-                <h4>Food Demand Prediction</h4>
-                <div class="muted">Regression modelling and feature engineering to forecast demand.</div>
-                <div class="tags">
-                  <span class="tag">SPSS</span>
-                  <span class="tag">Regression</span>
-                </div>
-                <div class="links">
-                  <a href="#">Repository</a>
-                </div>
-              </article>
+<a href="https://github.com/Khaleelsk/Voice-Mood-Detection" class="section-btn" target="_blank">Link</a>
+<a href="https://github.com/Khaleelsk/Voice-Mood-Detection" class="section-btn" target="_blank">Repository</a>
 
-              <article class="project">
-                <h4>Voice–Mood Detection</h4>
-                <div class="muted">Published project on detecting mood from voice signals.</div>
-                <div class="tags">
-                  <span class="tag">ML</span>
-                  <span class="tag">Signal Proc.</span>
-                </div>
-                <div class="links">
-                  <a href="#">Repository</a>
-                </div>
-              </article>
+</div>
 
-            </div>
-          </div>
+<div class="project-card">
+  <h3>Sentiment Analysis</h3>
+<ul class="project-points">
+  <li>💬 Built a machine learning–based sentiment classification model to analyze text data and categorize opinions into positive, negative, and neutral sentiments.</li>
+  <li>🧹 Performed extensive data preprocessing, including tokenization, stop-word removal, lemmatization, and vectorization using TF-IDF and word embeddings.</li>
+  <li>🤖 Implemented and compared multiple ML models—including Logistic Regression, SVM, and Random Forest—to identify the best-performing classifier.</li>
+  <li>📊 Generated actionable insights by analyzing sentiment distribution and trends, improving decision-making for content strategy and customer engagement.</li>
+</ul>
 
-          <div class="card" style="margin-top:14px;" id="about">
-            <div class="section-title"><h3>About</h3></div>
-            <p style="color:var(--muted);line-height:1.6">I completed a B.Tech in CSE (Data Science) and have internship experience in data science and cyber security. I enjoy building dashboards, automating reports, and solving business problems using data-driven approaches.</p>
-          </div>
+<a href="https://my-sentiment-analysis.streamlit.app/" class="section-btn" target="_blank">Link</a>
+<a href="https://github.com/Khaleelsk/Sentiment-Analysis" class="section-btn" target="_blank">Repository</a>
 
-        </div>
+</div>
+<div class="project-card">
+ <h3>House Price Prediction Using Data Analytics & Data Science</h3>
+<ul class="project-points">
+  <li>🏡 Built a predictive analytics model to estimate house prices using key features such as location, area, number of rooms, and property conditions.</li>
+  <li>🧹 Performed thorough data preprocessing—handling missing values, encoding categorical variables, outlier detection, feature scaling, and exploratory data analysis (EDA).</li>
+  <li>🤖 Implemented machine learning models including Linear Regression, Random Forest, and Gradient Boosting, achieving high prediction accuracy and strong generalization.</li>
+  <li>📈 Identified significant pricing factors through correlation analysis and feature importance metrics, enabling more informed real-estate pricing decisions.</li>
+</ul>
 
-        <aside>
-          <div class="card" id="skills">
-            <div class="section-title"><h3>Skills</h3></div>
-            <div class="skills-list">
-              <div class="skill"><div class="name">Python (Pandas, NumPy)</div><div class="level">Advanced</div></div>
-              <div class="skill"><div class="name">SQL / PostgreSQL</div><div class="level">Advanced</div></div>
-              <div class="skill"><div class="name">Power BI / Tableau</div><div class="level">Intermediate</div></div>
-              <div class="skill"><div class="name">Excel (PivotTables)</div><div class="level">Advanced</div></div>
-              <div class="skill"><div class="name">HTML, CSS, Java</div><div class="level">Intermediate</div></div>
-            </div>
-          </div>
+<a href="https://shaik-house-price-predictor.streamlit.app/" class="section-btn" target="_blank">Link</a>
+<a href="https://github.com/Khaleelsk/House-Price-Prediction" class="section-btn" target="_blank">Repository</a>
 
-          <div class="card" style="margin-top:14px;" id="experience">
-            <div class="section-title"><h3>Experience</h3></div>
-            <div class="exp-item">
-              <h4>Trainee Salesforce Developer — Accellor</h4>
-              <p>Shortlisted, preparing for Apex & SOQL.</p>
-            </div>
-            <div class="exp-item">
-              <h4>Intern — Lyfaux Technologies</h4>
-              <p>Cyber security exposure and support tasks.</p>
-            </div>
-          </div>
+</div>
+  </section>
 
-          <div class="card" style="margin-top:14px;" id="contact">
-            <div class="section-title"><h3>Contact</h3></div>
-            <p style="color:var(--muted);font-size:14px;line-height:1.5">Email: <a href="mailto:youremail@example.com" style="color:var(--accent);text-decoration:none">youremail@example.com</a><br>GitHub: <a href="https://github.com/yourusername" style="color:var(--accent);text-decoration:none">github.com/yourusername</a></p>
-          </div>
-        </aside>
-      </section>
-    </main>
+  <!-- Experience Section -->
+  <section id="experience">
+  <h2>Experience</h2>
+
+  <div class="section-card experience-item">
+    <h3>Data Analyst Intern – Codegnan IT Solutions</h3>
+    <p><i>Nov 2023 – Apr 2024</i></p>
+    <ul>
+      <li>Collected, cleaned, and organized large datasets using SQL, Excel, and Python to ensure accuracy and consistency for analysis.</li>
+      <li>Performed exploratory data analysis (EDA) and created detailed visual reports to highlight business trends and support decision-making.</li>
+      <li>Developed analytical models to identify key drivers and improve data-driven insights for internal reporting.</li>
+      <li>Collaborated with cross-functional teams to deliver actionable recommendations based on data patterns and performance metrics.</li>
+    </ul>
   </div>
+
+  <div class="section-card experience-item">
+    <h3>Data Science Intern – AI Variant</h3>
+    <p><i>Aug 2024 – Mar 2025</i></p>
+    <ul>
+      <li>Analyzed complex datasets to identify trends, patterns, and anomalies, supporting strategic decision-making for business initiatives.</li>
+      <li>Created dashboards and visualizations using Power BI to monitor KPIs and improve reporting efficiency.</li>
+      <li>Performed data validation, cleaning, and feature analysis to enhance data accuracy and reporting quality.</li>
+      <li>Worked with large datasets in an agile workflow, ensuring structured pipelines and timely insights for stakeholders.</li>
+    </ul>
+  </div>
+
+    <div class="section-card experience-item">
+  <h3>Ethical Hacking & VAPT Training – Lyfaux Technologies</h3>
+  <p><i>July 18, 2022 – Sep 4, 2022</i></p>
+  <ul>
+    <li>Completed hands-on training in Ethical Hacking and Vulnerability Assessment & Penetration Testing (VAPT).</li>
+    <li>Gained practical exposure to identifying system vulnerabilities, analyzing security risks, and applying basic penetration testing methodologies.</li>
+    <li>Strengthened understanding of cybersecurity concepts, network security, and secure system practices.</li>
+    <li>Developed foundational skills that enhanced my analytical mindset and attention to detail—supporting my work as a Data Analyst.</li>
+  </ul>
+</div>
+
+</section>
+
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Khaleel Shaik | Data Analyst Portfolio</p>
+  </footer>
+
 </body>
 </html>
